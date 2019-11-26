@@ -1,12 +1,12 @@
 [user]
 	# Name used in commit messages.
-	name = Solana Home
+	name = Christopher Allen
 	# Email used in commit messages.
 	email = SolanaHome@icloud.com
-	signingkey = D497DCD9FBCAA503
+	signingkey = FDFE14A54ECB30FC5D2274EFF8D36C91357405ED
 [github]
 	# GitHub username for command-line tools.
-	user = solanahome
+	user = ChristopherA
 [color]
 	# Colour terminal command output when possible.
 	ui = auto
@@ -27,7 +27,7 @@
 	enabled = 1
 [core]
 	# Exclude everything this file. Used for general exclusions.
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 	# Set attributes on files. Used for general diff improvements.
 	attributesfile = ~/.gitattributes
 	# Don't prompt for commit messages for merge commits.

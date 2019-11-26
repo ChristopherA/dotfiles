@@ -3,53 +3,7 @@
 
 cd $(dirname $0)/..
 
-# Setup critial but private files
-
-echo "Setting up GPG..."
-if ! command -v gpg >/dev/null
-then
-    echo "Install GPG first!" >&2
-    exit 1
-fi
-
-# Set critical file permissions
-
-sudo chown -R  ~/.gnupg/
-sudo chown -R $USER ~/.gnupg/*
-sudo chown -R $USER ~/.ssh
-sudo chown -R $USER ~/.ssh/*
-sudo chmod 755 ~
-sudo chmod 700 ~/.ssh
-sudo chmod 600 ~/.ssh/*
-sudo chmod 600 ~/.ssh/id_*
-sudo chmod 644 ~/.ssh/*.pub
-sudo chmod 644 ~/.ssh/authorized_keys
-sudo chmod 700 ~/.gnupg
-sudo chmod 600 ~/.gnupg/*
-
-echo "Storing SSH keys in keychain..."
-ssh-add -K
-
-# Prep GPG
-
-echo "Adding master keys to GPG keychain..."
-
-gpg --import ~/.gnupg/privatekey.tenebrass@protonmail.com.asc \
-             ~/.gnupg/publickey.tenebrass@protonmail.com.asc
-
-git config --global user.name "Solana Home"
-git config --global user.email "SolanaHome@icloud.com"
-git config --global user.signingkey D497DCD9FBCAA503
-git config --global gpg.program gpg
-git config --global commit.gpgsign true
-
-gpgconf --kill gpg-agent
-gpg-connect-agent /bye
-GPG_TTY=$(tty)
-export GPG_TTY
-echo "test" | gpg --clearsign
-
 if [ "$SHELL" != "/bin/zsh" ]
 then
-  chsh -s /bin/zsh solanahome
+  chsh -s /bin/zsh $USER
 fi

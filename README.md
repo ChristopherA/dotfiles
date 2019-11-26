@@ -1,15 +1,17 @@
 # Dot Files
-My dot files shared between machines for ZSH, Bash, macOS, Linux, Cygwin and MSYS.
+My dot files shared between machines for ZSH, Bash, macOS, Linux, Cygwin and MSYS. Fork of @Mike McQuaid's [dotfiles](/MikeMcQuaid/dotfiles)
 
 ## Installation
-Run [`script/setup`](https://github.com/MikeMcQuaid/dotfiles/blob/master/script/setup)
+Is run automatically as part of @Mike McQuaid's [strap](/MikeMcQuaid/strap)
+
+Or un [`script/setup`](https://github.com/MikeMcQuaid/dotfiles/blob/master/script/setup)
 after checkout to symlink (or copy) everything in this directory to your home directory.
 
 ## Status
-I'm using these on all my personal machines.
+Testing
 
 ## Contact
-[Mike McQuaid](mailto:mike@mikemcquaid.com)
+@SolanaHome SolanaHome@icloud.com
 
 ## License
 These dot files are licensed under the [GPLv3 License](https://en.wikipedia.org/wiki/GNU_General_Public_License).

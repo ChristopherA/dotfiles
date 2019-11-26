@@ -1,11 +1,12 @@
 [user]
 	# Name used in commit messages.
-	name = Mike McQuaid
+	name = Solana Home
 	# Email used in commit messages.
-	email = mike@mikemcquaid.com
+	email = SolanaHome@icloud.com
+	signingkey = D497DCD9FBCAA503
 [github]
 	# GitHub username for command-line tools.
-	user = MikeMcQuaid
+	user = solanahome
 [color]
 	# Colour terminal command output when possible.
 	ui = auto
@@ -216,3 +217,5 @@
 	# Print more readable dates in `git log`
 	# TODO: re-enable when more widely supported by Git versions
 	# date = human
+[gpg]
+	program = gpg

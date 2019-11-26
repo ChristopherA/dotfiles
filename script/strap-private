@@ -1,0 +1,56 @@
+#!/bin/sh
+# Run by Strap after installing Brewfile dependencies
+
+# Setup critial but private files
+
+cd ~/.private
+stow setup
+cd ~
+
+echo "Setting up GPG..."
+if ! command -v gpg >/dev/null
+then
+    echo "Install GPG first!" >&2
+    exit 1
+fi
+
+# Set critical file permissions
+
+sudo chown -R  ~/.gnupg/
+sudo chown -R $USER ~/.gnupg/*
+sudo chown -R $USER ~/.ssh
+sudo chown -R $USER ~/.ssh/*
+sudo chmod 755 ~
+sudo chmod 700 ~/.ssh
+sudo chmod 600 ~/.ssh/*
+sudo chmod 600 ~/.ssh/id_*
+sudo chmod 644 ~/.ssh/*.pub
+sudo chmod 644 ~/.ssh/authorized_keys
+sudo chmod 700 ~/.gnupg
+sudo chmod 700 ~/.gnupg/*
+
+# Prep SSH
+
+echo "Storing SSH keys in keychain..."
+ssh-add -K
+
+# Prep GPG
+
+echo "Adding master keys to GPG keychain..."
+
+gpg --import ~/.gnupg/privatekey.RhiannonsVeil@protonmail.com.asc ~/.gnupg/privatekey.RhiannonsVeil@pm.me.asc
+
+git config --global user.name "Christopher Allen"
+git config --global user.email "ChristopherA@LifeWithAlacrity.com"
+git config --global user.signingkey FDFE14A54ECB30FC5D2274EFF8D36C91357405ED
+git config --global gpg.program gpg
+git config --global credential.helper = osxkeychain
+git config --global commit.gpgsign true
+git config --global core.excludesfile ~/.gitignore_global
+
+gpgconf --kill gpg-agent
+gpg-connect-agent /bye
+GPG_TTY=$(tty)
+export GPG_TTY
+echo $STRAP_GITHUB_USER
+#echo "test" | gpg --clearsign #test

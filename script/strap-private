@@ -3,9 +3,9 @@
 
 # Setup critial but private files
 
-cd ~/.private
-stow setup
-cd ~
+#cd ~/.private
+#stow setup
+#cd ~
 
 echo "Setting up GPG..."
 if ! command -v gpg >/dev/null
@@ -32,13 +32,14 @@ sudo chmod 700 ~/.gnupg/*
 # Prep SSH
 
 echo "Storing SSH keys in keychain..."
+ssh-add ~/.ssh/id_christophera@github
 ssh-add -K
 
 # Prep GPG
 
 echo "Adding master keys to GPG keychain..."
 
-gpg --import ~/.gnupg/privatekey.RhiannonsVeil@protonmail.com.asc ~/.gnupg/privatekey.RhiannonsVeil@pm.me.asc
+gpg --import ~/.gnupg/Christopher\ Allen\ \(357405ED\)\ –\ Secret.asc ~/.gnupg/Christopher\ Allen\ \(357405ED\)\ –\ Public.asc
 
 git config --global user.name "Christopher Allen"
 git config --global user.email "ChristopherA@LifeWithAlacrity.com"

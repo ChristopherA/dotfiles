@@ -16,7 +16,7 @@ fi
 
 # Set critical file permissions
 
-sudo chown -R  ~/.gnupg/
+sudo chown -R $USER ~/.gnupg/
 sudo chown -R $USER ~/.gnupg/*
 sudo chown -R $USER ~/.ssh
 sudo chown -R $USER ~/.ssh/*
@@ -41,17 +41,21 @@ echo "Adding master keys to GPG keychain..."
 
 gpg --import ~/.gnupg/Christopher\ Allen\ \(357405ED\)\ –\ Secret.asc ~/.gnupg/Christopher\ Allen\ \(357405ED\)\ –\ Public.asc
 
-git config --global user.name "Christopher Allen"
-git config --global user.email "ChristopherA@LifeWithAlacrity.com"
-git config --global user.signingkey FDFE14A54ECB30FC5D2274EFF8D36C91357405ED
-git config --global gpg.program gpg
-git config --global credential.helper = osxkeychain
-git config --global commit.gpgsign true
-git config --global core.excludesfile ~/.gitignore_global
+## Ultimate Trust for master key (from https://stackoverflow.com/questions/13116457/how-to-make-auto-trust-gpg-public-key)
+(echo trust &echo 5 &echo y &echo quit) | gpg --command-fd 0 --edit-key ChristopherA@LifeWithAlacrity.com
+
+## These are now in .dotfiles/gitconfig
+#git config --global user.name "Christopher Allen"
+#git config --global user.email "ChristopherA@LifeWithAlacrity.com"
+#git config --global user.signingkey FDFE14A54ECB30FC5D2274EFF8D36C91357405ED
+#git config --global gpg.program gpg
+#git config --global credential.helper = osxkeychain
+#git config --global commit.gpgsign true
+#git config --global core.excludesfile ~/.gitignore_global
 
 gpgconf --kill gpg-agent
 gpg-connect-agent /bye
 GPG_TTY=$(tty)
 export GPG_TTY
-echo $STRAP_GITHUB_USER
+
 #echo "test" | gpg --clearsign #test
